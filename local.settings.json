@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "{AzureWebJobsStorage}",
+    "ExampleJSONHTTPFunction_Name": "ExampleJSONHTTPFunction",
+    "ExampleJSONHTTPFunction_Managed": "false",
+    "ExampleJSONHTTPFunction_Role": "{\"_action\": \"celastrina\", \"_roles\": [\"test123\"], \"_match\": {\"_type\": \"MatchAny\"}}",
+    "ExampleJSONHTTPFunction_AppAuth": "{\"_authority\":\"https://login.microsoftonline.com\", \"_tenant\": \"b5fd4f0d-eebb-430c-ba14-72578dd91324\", \"_id\":\"bb7003ed-a22b-43bc-bc74-7ba3a1bf5a2c\", \"_secret\":\"qlqSRCcwBDyx3.E648O:nW]zd?USgxAU\", \"_resources\": [\"https://vault.azure.net\", \"https://datalake.azure.net/\"]}"
+  }
+}
