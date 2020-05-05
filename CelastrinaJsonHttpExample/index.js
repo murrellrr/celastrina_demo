@@ -32,7 +32,7 @@ const config = new Configuration(new StringProperty("ExampleJSONHTTPFunction_Nam
                                  new BooleanProperty("ExampleJSONHTTPFunction_Managed"));
 
 config.addFunctionRole(new FunctionRoleProperty("ExampleJSONHTTPFunction_Role"))
-      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJSONHTTPFunction_AppAuth"));
+      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJSONHTTPFunction_AppAuth", true));
 
 class ExampleJSONHTTPFunction extends JSONHTTPFunction {
     async authenticate(context) {
