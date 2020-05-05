@@ -25,28 +25,21 @@
 "use strict";
 
 const {LOG_LEVEL, StringProperty, BooleanProperty, FunctionRoleProperty, ApplicationAuthorizationProperty,
-       Configuration} = require("@celastrina/core");
-const {JSONHTTPContext, JSONHTTPFunction} = require("@celastrina/http");
+    Configuration} = require("@celastrina/core");
+const {JSONHTTPContext, JSONHTTPFunction, IssuerProperty, HeaderParameterFetch, JwtConfiguration,
+       JwtJSONHTTPFunction} = require("@celastrina/http");
 
-const config = new Configuration(new StringProperty("ExampleJSONHTTPFunction_Name"),
-                                 new BooleanProperty("ExampleJSONHTTPFunction_Managed"));
+const config = new Configuration(new StringProperty("ExampleJwtJSONHTTPFunction_Name"),
+                                 new BooleanProperty("ExampleJwtJSONHTTPFunction_Managed"));
 
-config.addFunctionRole(new FunctionRoleProperty("ExampleJSONHTTPFunction_Role"))
-      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJSONHTTPFunction_AppAuth", true));
+const jwt = new JwtConfiguration([new IssuerProperty("ExampleJwtJSONHTTPFunction_Issuer")]);
+jwt.setRemoveScheme(true);
 
-class ExampleJSONHTTPFunction extends JSONHTTPFunction {
-    async authenticate(context) {
-        return new Promise((resolve, reject) => {
-            super.authenticate(context)
-                .then((subject) => {
-                    subject.addRole("test123");
-                    resolve(subject);
-                })
-                .catch((exception) => {
-                    reject(exception);
-                });
-        });
-    }
+config.addFunctionRole(new FunctionRoleProperty("ExampleJwtJSONHTTPFunction_Role"))
+      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJwtJSONHTTPFunction_AppAuth"))
+      .addValue(JwtConfiguration.CELASTRINAJS_CONFIG_JWT, jwt);
+
+class ExampleJwtJSONHTTPFunction extends JwtJSONHTTPFunction {
 
     async _get(context) {
         return new Promise((resolve, reject) => {
@@ -63,4 +56,4 @@ class ExampleJSONHTTPFunction extends JSONHTTPFunction {
     }
 }
 
-module.exports = new ExampleJSONHTTPFunction(config);
+module.exports = new ExampleJwtJSONHTTPFunction(config);
