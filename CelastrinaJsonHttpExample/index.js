@@ -64,7 +64,7 @@ class ExampleJSONHTTPFunction extends JSONHTTPFunction {
 
     async _celastrina(context) {
         return new Promise((resolve, reject) => {
-            context.send({"sentry": JSON.stringify(process.env)});
+            context.send({"sentry": JSON.stringify(context)});
             resolve();
         });
     }
