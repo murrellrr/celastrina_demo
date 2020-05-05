@@ -32,7 +32,7 @@ const config = new Configuration(new StringProperty("ExampleJSONHTTPFunction_Nam
                                  new BooleanProperty("ExampleJSONHTTPFunction_Managed"));
 
 config.addFunctionRole(new FunctionRoleProperty("ExampleJSONHTTPFunction_Role"))
-      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJSONHTTPFunction_AppAuth", true));
+      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJSONHTTPFunction_AppAuth"));
 
 class ExampleJSONHTTPFunction extends JSONHTTPFunction {
     async authenticate(context) {
@@ -64,7 +64,7 @@ class ExampleJSONHTTPFunction extends JSONHTTPFunction {
 
     async _celastrina(context) {
         return new Promise((resolve, reject) => {
-            context.send({"sentry": JSON.stringify(context.sentry)});
+            context.send({"sentry": JSON.stringify(process.env)});
             resolve();
         });
     }
