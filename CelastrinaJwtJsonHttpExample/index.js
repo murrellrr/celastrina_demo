@@ -32,25 +32,24 @@ const {JSONHTTPContext, JSONHTTPFunction, IssuerProperty, HeaderParameterFetch, 
 const config = new Configuration(new StringProperty("ExampleJwtJSONHTTPFunction_Name"),
                                  new BooleanProperty("ExampleJwtJSONHTTPFunction_Managed"));
 
-const jwt = new JwtConfiguration([new IssuerProperty("ExampleJwtJSONHTTPFunction_Issuer")]);
-jwt.setRemoveScheme(true);
+const jwt = new JwtConfiguration([new IssuerProperty("ExampleJwtJSONHTTPFunction_Issuer", true)]);
 
 config.addFunctionRole(new FunctionRoleProperty("ExampleJwtJSONHTTPFunction_Role"))
-      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJwtJSONHTTPFunction_AppAuth"))
+      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJwtJSONHTTPFunction_AppAuth", true))
       .addValue(JwtConfiguration.CELASTRINAJS_CONFIG_JWT, jwt);
 
 class ExampleJwtJSONHTTPFunction extends JwtJSONHTTPFunction {
 
     async _get(context) {
         return new Promise((resolve, reject) => {
-            context.send({"message": "_get invoked."});
+            context.send({message: "_get invoked.", context: JSON.stringify(context)});
             resolve();
         });
     }
 
     async _post(context) {
         return new Promise((resolve, reject) => {
-            context.send({"message": "_post invoked."});
+            context.send({message: "_post invoked."});
             resolve();
         });
     }
