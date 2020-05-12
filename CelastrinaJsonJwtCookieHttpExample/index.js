@@ -24,21 +24,20 @@
 
 "use strict";
 
-const {LOG_LEVEL, StringProperty, BooleanProperty, FunctionRoleProperty, ApplicationAuthorizationProperty,
+const {StringProperty, FunctionRoleProperty, ApplicationAuthorizationProperty,
        Configuration} = require("@celastrina/core");
-const {JSONHTTPContext, JSONHTTPFunction, IssuerProperty, HeaderParameterFetch, JwtConfiguration,
+const {IssuerProperty, JwtConfiguration,
        JwtJSONHTTPFunction, CookieSessionResolver, SecureCookieSessionResolverProperty} = require("@celastrina/http");
 
-const config = new Configuration(new StringProperty("ExampleJwtSecureRoleJSONHTTPFunction_Name"),
-                                 new BooleanProperty("ExampleJwtSecureRoleJSONHTTPFunction_Managed"));
+const config = new Configuration(new StringProperty("ExampleJwtSecureRoleJSONHTTPFunction_Name"));
 
-const jwt = new JwtConfiguration([new IssuerProperty("ExampleJwtSecureRoleJSONHTTPFunction_Issuer", true)]);
+const jwt = new JwtConfiguration([new IssuerProperty("ExampleJwtSecureRoleJSONHTTPFunction_Issuer")]);
 
 config.addFunctionRole(new FunctionRoleProperty("ExampleJwtSecureRoleJSONHTTPFunction_Role"))
-    .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJwtSecureRoleJSONHTTPFunction_AppAuth", true))
-    .addValue(JwtConfiguration.CELASTRINAJS_CONFIG_JWT, jwt)
-    .addValue(CookieSessionResolver.CELASTRINA_CONFIG_HTTP_SESSION_RESOLVER,
-              new SecureCookieSessionResolverProperty("ExampleJwtSecureSessionJSONHTTPFunction_Resolver", true));
+    .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJwtSecureRoleJSONHTTPFunction_AppAuth"))
+    .setValue(JwtConfiguration.CELASTRINAJS_CONFIG_JWT, jwt)
+    .setValue(CookieSessionResolver.CELASTRINA_CONFIG_HTTP_SESSION_RESOLVER,
+              new SecureCookieSessionResolverProperty("ExampleJwtSecureSessionJSONHTTPFunction_Resolver"));
 
 class ExampleJwtSecureRoleJSONHTTPFunction extends JwtJSONHTTPFunction {
     async initialize(context) {

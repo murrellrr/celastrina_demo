@@ -24,15 +24,14 @@
 
 "use strict";
 
-const {LOG_LEVEL, StringProperty, BooleanProperty, FunctionRoleProperty, ApplicationAuthorizationProperty,
+const {StringProperty, FunctionRoleProperty, ApplicationAuthorizationProperty,
        Configuration} = require("@celastrina/core");
-const {JSONHTTPContext, JSONHTTPFunction} = require("@celastrina/http");
+const {JSONHTTPFunction} = require("@celastrina/http");
 
-const config = new Configuration(new StringProperty("ExampleJSONHTTPFunction_Name"),
-                                 new BooleanProperty("ExampleJSONHTTPFunction_Managed"));
+const config = new Configuration(new StringProperty("ExampleJSONHTTPFunction_Name"));
 
 config.addFunctionRole(new FunctionRoleProperty("ExampleJSONHTTPFunction_Role"))
-      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJSONHTTPFunction_AppAuth", true));
+      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJSONHTTPFunction_AppAuth"));
 
 class ExampleJSONHTTPFunction extends JSONHTTPFunction {
     async authenticate(context) {

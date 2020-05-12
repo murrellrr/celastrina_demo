@@ -24,22 +24,20 @@
 
 "use strict";
 
-const {LOG_LEVEL, StringProperty, BooleanProperty, FunctionRoleProperty, ApplicationAuthorizationProperty,
+const {StringProperty, FunctionRoleProperty, ApplicationAuthorizationProperty,
     Configuration} = require("@celastrina/core");
-const {JSONHTTPContext, JSONHTTPFunction, IssuerProperty, HeaderParameterFetch, JwtConfiguration,
+const {IssuerProperty, JwtConfiguration,
        JwtJSONHTTPFunction} = require("@celastrina/http");
 
-const config = new Configuration(new StringProperty("ExampleJwtJSONHTTPFunction_Name"),
-                                 new BooleanProperty("ExampleJwtJSONHTTPFunction_Managed"));
+const config = new Configuration(new StringProperty("ExampleJwtJSONHTTPFunction_Name"));
 
-const jwt = new JwtConfiguration([new IssuerProperty("ExampleJwtJSONHTTPFunction_Issuer", true)]);
+const jwt = new JwtConfiguration([new IssuerProperty("ExampleJwtJSONHTTPFunction_Issuer")]);
 
 config.addFunctionRole(new FunctionRoleProperty("ExampleJwtJSONHTTPFunction_Role"))
-      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJwtJSONHTTPFunction_AppAuth", true))
-      .addValue(JwtConfiguration.CELASTRINAJS_CONFIG_JWT, jwt);
+      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJwtJSONHTTPFunction_AppAuth"))
+      .setValue(JwtConfiguration.CELASTRINAJS_CONFIG_JWT, jwt);
 
 class ExampleJwtJSONHTTPFunction extends JwtJSONHTTPFunction {
-
     async _get(context) {
         return new Promise((resolve, reject) => {
             context.send({message: "_get invoked.", context: JSON.stringify(context)});
