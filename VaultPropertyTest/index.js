@@ -22,44 +22,32 @@
  * SOFTWARE.
  */
 
+/**
+ * @author Robert R Murrell
+ * @copyright Robert R Murrell
+ * @license MIT
+ */
+
 "use strict";
 
-const {StringProperty, FunctionRoleProperty, ApplicationAuthorizationProperty,
-       Configuration} = require("@celastrina/core");
+const {VaultAppSettingPropertyHandler, CachePropertyHandler, Configuration} = require("@celastrina/core");
 const {JSONHTTPFunction} = require("@celastrina/http");
 
-const config = new Configuration(new StringProperty("ExampleJSONHTTPFunction_Name"));
+const config = new Configuration("VaultPropertyTest");
 
-config.addFunctionRole(new FunctionRoleProperty("ExampleJSONHTTPFunction_Role"))
-      .addApplicationAuthorization(new ApplicationAuthorizationProperty("ExampleJSONHTTPFunction_AppAuth"));
+config.setPropertyHandler(new CachePropertyHandler(new VaultAppSettingPropertyHandler()));
 
-class ExampleJSONHTTPFunction extends JSONHTTPFunction {
-    async authenticate(context) {
-        return new Promise((resolve, reject) => {
-            super.authenticate(context)
-                .then((subject) => {
-                    subject.addRole("test123");
-                    resolve(subject);
-                })
-                .catch((exception) => {
-                    reject(exception);
-                });
-        });
+class VaultPropertyTest extends JSONHTTPFunction {
+    constructor(config) {
+        super(config);
     }
 
     async _get(context) {
         return new Promise((resolve, reject) => {
-            context.send({"message": "_get invoked."});
-            resolve();
-        });
-    }
-
-    async _post(context) {
-        return new Promise((resolve, reject) => {
-            context.send({"message": "_post invoked."});
+            context.send({message: "success"})
             resolve();
         });
     }
 }
 
-module.exports = new ExampleJSONHTTPFunction(config);
+module.exports = new VaultPropertyTest(config);

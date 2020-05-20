@@ -2,23 +2,6 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
-    "AzureWebJobsStorage": "{AzureWebJobsStorage}",
-    "ExampleJSONHTTPFunction_Name": "ExampleJSONHTTPFunction",
-    "ExampleJSONHTTPFunction_Managed": "false",
-    "ExampleJSONHTTPFunction_Role": "{\"_action\": \"post\", \"_roles\": [\"test123\"], \"_match\": {\"_type\": \"MatchAny\"}}",
-    "ExampleJSONHTTPFunction_AppAuth": "{\"_authority\":\"https://login.microsoftonline.com\", \"_tenant\": \"3072ddb6-0bfb-4853-99a8-e5c5c7f4779e\", \"_id\":\"6d85cd94-7ae1-40e6-8104-db62c5e8a63a\", \"_secret\":\"H{Zpi9BC2Mi+d]o=0>Deu(B^\", \"_resources\": [\"https://vault.azure.net\", \"https://datalake.azure.net/\"]}",
-
-    "ExampleJwtJSONHTTPFunction_Name": "ExampleJwtJSONHTTPFunction",
-    "ExampleJwtJSONHTTPFunction_Managed": "false",
-    "ExampleJwtJSONHTTPFunction_Role": "{\"_action\": \"post\", \"_roles\": [\"test123\"], \"_match\": {\"_type\": \"MatchAny\"}}",
-    "ExampleJwtJSONHTTPFunction_AppAuth": "{\"_authority\":\"https://login.microsoftonline.com\", \"_tenant\": \"3072ddb6-0bfb-4853-99a8-e5c5c7f4779e\", \"_id\":\"6d85cd94-7ae1-40e6-8104-db62c5e8a63a\", \"_secret\":\"H{Zpi9BC2Mi+d]o=0>Deu(B^\", \"_resources\": [\"https://vault.azure.net\", \"https://datalake.azure.net/\"]}",
-    "ExampleJwtJSONHTTPFunction_Issuer": "{\"_name\": \"https://democelastrinajscom.b2clogin.com/3072ddb6-0bfb-4853-99a8-e5c5c7f4779e/v2.0/\", \"_audience\":\"6d85cd94-7ae1-40e6-8104-db62c5e8a63a\", \"_roles\":[\"test123\"]}",
-
-    "ExampleJwtSecureRoleJSONHTTPFunction_Name": "ExampleJwtSecureRoleJSONHTTPFunction",
-    "ExampleJwtSecureRoleJSONHTTPFunction_Managed": "false",
-    "ExampleJwtSecureRoleJSONHTTPFunction_Role": "{\"_action\": \"post\", \"_roles\": [\"test12345678\"], \"_match\": {\"_type\": \"MatchAny\"}}",
-    "ExampleJwtSecureRoleJSONHTTPFunction_AppAuth": "{\"_authority\":\"https://login.microsoftonline.com\", \"_tenant\": \"3072ddb6-0bfb-4853-99a8-e5c5c7f4779e\", \"_id\":\"6d85cd94-7ae1-40e6-8104-db62c5e8a63a\", \"_secret\":\"H{Zpi9BC2Mi+d]o=0>Deu(B^\", \"_resources\": [\"https://vault.azure.net\", \"https://datalake.azure.net/\"]}",
-    "ExampleJwtSecureRoleJSONHTTPFunction_Issuer": "{\"_name\": \"https://democelastrinajscom.b2clogin.com/3072ddb6-0bfb-4853-99a8-e5c5c7f4779e/v2.0/\", \"_audience\":\"6d85cd94-7ae1-40e6-8104-db62c5e8a63a\", \"_roles\":[\"test1234\"]}",
-    "ExampleJwtSecureSessionJSONHTTPFunction_Resolver": "{\"_name\":\"celastrina_session\", \"_key\":\"bf3c199c2470cb477d907b1e0917c17b\", \"_iv\":\"5183666c72eec9e4\"}"
+    "AzureWebJobsStorage": "{AzureWebJobsStorage}"
   }
 }
