@@ -2,6 +2,8 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
-    "AzureWebJobsStorage": "{AzureWebJobsStorage}"
+    "AzureWebJobsStorage": "{AzureWebJobsStorage}",
+
+    "com.example.vault.property": "{\"_type\":\"celastrinajs.vault.reference\", \"_resourceId\":\"https://demo-celastrinajs-com.vault.azure.net/secrets/ExampleJwtJSONHTTPFunctionIssuer/d4a13ffb0a764302b29dd22cfc464ed4\"}"
   }
 }

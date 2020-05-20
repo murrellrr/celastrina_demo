@@ -44,7 +44,8 @@ class VaultPropertyTest extends JSONHTTPFunction {
 
     async _get(context) {
         return new Promise((resolve, reject) => {
-            context.send({message: "success"})
+            let secureval = context.getProperty("com.example.vault.property");
+            context.send({message: "success", resource: secureval});
             resolve();
         });
     }
