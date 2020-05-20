@@ -43,9 +43,9 @@ class VaultPropertyTest extends JSONHTTPFunction {
     }
 
     async _get(context) {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             context.log("Loading property...'com.example.vault.property': " + process.env["com.example.vault.property"] + ".");
-            let secureProperty = context.getProperty("com.example.vault.property", "this didnt work...");
+            let secureProperty = await context.getProperty("com.example.vault.property", "this didnt work...");
             context.send({message: "success", resource: secureProperty});
             resolve();
         });
