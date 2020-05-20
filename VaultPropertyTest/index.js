@@ -35,7 +35,7 @@ const {JSONHTTPFunction} = require("@celastrina/http");
 
 const config = new Configuration("VaultPropertyTest");
 
-config.setPropertyHandler(new CachePropertyHandler(new VaultAppSettingPropertyHandler()));
+config.setPropertyHandler(new VaultAppSettingPropertyHandler());
 
 class VaultPropertyTest extends JSONHTTPFunction {
     constructor(config) {
