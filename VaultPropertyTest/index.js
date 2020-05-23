@@ -30,13 +30,11 @@
 
 "use strict";
 
-const {AppConfigPropertyHandler, CachePropertyHandler, Configuration} = require("@celastrina/core");
+const {CachePropertyHandler, VaultAppSettingPropertyHandler, Configuration} = require("@celastrina/core");
 const {JSONHTTPFunction} = require("@celastrina/http");
 
 const config = new Configuration("VaultPropertyTest");
-
-config.setPropertyHandler(new CachePropertyHandler(new AppConfigPropertyHandler(
-    "/subscriptions/83cc212b-b79b-43f1-823c-76f0eb210e53/resourceGroups/rg.demo.celastrinajs.com/providers/Microsoft.AppConfiguration/configurationStores/demo-celastrinajs-com")));
+config.setPropertyHandler(new CachePropertyHandler(new VaultAppSettingPropertyHandler()));
 
 class VaultPropertyTest extends JSONHTTPFunction {
     constructor(config) {
@@ -48,8 +46,8 @@ class VaultPropertyTest extends JSONHTTPFunction {
             Promise.all([context.getProperty("com.example.vault.property", "com.example.vault.property.failed"),
                                context.getProperty("com.example.app.property",   "com.example.app.property.failed")])
                 .then((results) => {
-                    let handler = /** @type {CachePropertyHandler} */context.propertHandler;
-                    context.send({message: "success", vault: results[0], app: results[1], cache: handler.cache});
+                    //let handler = /** @type {CachePropertyHandler} */context.propertHandler;
+                    context.send({message: "success", vault: results[0], app: results[1]});
                     resolve();
                 })
                 .catch((exception) => {
