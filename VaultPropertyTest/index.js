@@ -40,8 +40,12 @@ class TestModule extends Module {
 
     async initialize(config, context,properties) {
         return new Promise((resolve, reject) => {
-            resolve();
+            resolve(this);
         });
+    }
+
+    async newModuleContext(context) {
+        return super.newModuleContext(context);
     }
 }
 
