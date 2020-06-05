@@ -30,11 +30,24 @@
 
 "use strict";
 
-const {CachePropertyHandler, VaultAppSettingPropertyHandler, Configuration} = require("@celastrina/core");
+const {CachePropertyHandler, VaultAppSettingPropertyHandler, Module, Configuration} = require("@celastrina/core");
 const {JSONHTTPFunction} = require("@celastrina/http");
 
+class TestModule extends Module {
+    constructor() {
+        super("core.TestModule");
+    }
+
+    async initialize(properties) {
+        return new Promise((resolve, reject) => {
+            resolve();
+        });
+    }
+}
+
 const config = new Configuration("VaultPropertyTest");
-config.setPropertyHandler(new CachePropertyHandler(new VaultAppSettingPropertyHandler()));
+config.setPropertyHandler(new CachePropertyHandler(new VaultAppSettingPropertyHandler()))
+      .addModule(new TestModule());
 
 class VaultPropertyTest extends JSONHTTPFunction {
     constructor(config) {
