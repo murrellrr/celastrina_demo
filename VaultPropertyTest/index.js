@@ -38,7 +38,7 @@ class TestModule extends Module {
         super("core.TestModule");
     }
 
-    async initialize(properties) {
+    async initialize(config, context,properties) {
         return new Promise((resolve, reject) => {
             resolve();
         });
